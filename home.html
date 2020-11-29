@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
     <div id="app"></div>
@@ -16,7 +17,7 @@
         }
 
         #ans{
-            box-sizing: border-box;
+            box-sizing:border-box;
             text-align: center;
             font-family: 'Courier New', Courier, monospace;
         }
@@ -37,15 +38,16 @@
                 score: 0,
                 count: 0,
                 response: "",
-                num1: Math.ceil(Math.random()*100),
-                num2: Math.ceil(Math.random()*100),
+                num1: Math.ceil(Math.random()*10),
+                num2: Math.ceil(Math.random()*10),
             };
             this.timer = 0;
             this.startTimer = this.startTimer.bind(this);
-            this.countDown = this.countUp.bind(this);
+            this.countUp = this.countUp.bind(this);
         }
         render() {
                     if (this.state.score === 10) {
+                        
                         return this.renderWinnerScreen();
                     } else {
                         return this.renderStart();
@@ -54,9 +56,8 @@
 
                 renderWinnerScreen() {
                     return (
-                        <div> 
-                    
-                    <h2 id="winner">Your time is! m: {minutes} s: {seconds}</h2>
+                    <div> 
+                    <h3 id="winner">Your time is! m: {this.state.time.m} s: {this.state.time.s}</h3>
                     <button id = "ans" onClick={this.startTimer}>Start</button>
                     </div> 
                     );
@@ -68,7 +69,7 @@
             <div>
                
                 <h2 id = "problem">{this.state.num1}+{this.state.num2}</h2>
-               <input id = "ans" onKeyPress = {this.inputKeyPress}onChange= {this.updateResponse} font-size = "30px" placeholder = "Press start" value = {this.state.response}/>
+               <input id = "ans" onKeyPress = {this.inputKeyPress}onChange= {this.updateResponse} placeholder = "Press start" value = {this.state.response}/>
                <div> Score: {this.state.score}</div>
                <h2 id = "ans">m: {this.state.time.m} s: {this.state.time.s}</h2>
                <button id = "ans" onClick={this.startTimer}>Start</button>
@@ -104,14 +105,14 @@
   
     startTimer() {
       if (this.timer == 0 && this.state.seconds == 0) {
-        this.timer = setInterval(this.countDown, 1000);
+        this.timer = setInterval(this.countUp, 1000);
       }
       
       this.setState(state =>({
                 seconds: -1,
                 score: 0,
-                num1: Math.ceil(Math.random()*100),
-                num2: Math.ceil(Math.random()*100),
+                num1: Math.ceil(Math.random()*10),
+                num2: Math.ceil(Math.random()*10),
                 response: ""
       }));
 
@@ -120,15 +121,22 @@
   
     countUp() {
       // Remove one second, set state so a re-render happens.
+      if (this.state.score < 10)
+      {
       let seconds = this.state.seconds + 1;
       this.setState({
         time: this.secondsToTime(seconds),
         seconds: seconds,
       });
+      }
       
-      
+      else{
+        return this.renderWinnerScreen();
+      }
       
     }
+
+    
   
        inputKeyPress = (event) =>{
         if(event.key==='Enter' && this.state.seconds != 0){
@@ -137,8 +145,8 @@
           {
             this.setState(state =>({
                 score: state.score +1,
-                num1: Math.ceil(Math.random()*100),
-                num2: Math.ceil(Math.random()*100),
+                num1: Math.ceil(Math.random()*10),
+                num2: Math.ceil(Math.random()*10),
                 response: ""
             }));
           }
@@ -168,3 +176,5 @@
     </script>
   </body>
 </html>
+
+
