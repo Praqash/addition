@@ -16,7 +16,7 @@
         }
     </style>
   </head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
   <body>
     
     <script type="text/babel">
@@ -61,7 +61,7 @@
                         
             <div>
                
-                <div id = "problem">{this.state.num1}+{this.state.num2}</div>
+                <h2 id = "problem">{this.state.num1}+{this.state.num2}</h2>
                <input id = "ans" onKeyPress = {this.inputKeyPress}onChange= {this.updateResponse} placeholder = "Press start to begin" value = {this.state.response}/>
                <div> Score: {this.state.score}</div>
                <h2 id = "ans">m: {this.state.time.m} s: {this.state.time.s}</h2>
