@@ -62,7 +62,7 @@
             <div>
                
                 <h2 id = "problem">{this.state.num1}+{this.state.num2}</h2>
-               <input id = "ans" onKeyPress = {this.inputKeyPress}onChange= {this.updateResponse} font-size = "30px" placeholder = "Press start to begin" value = {this.state.response}/>
+               <input id = "ans" onKeyPress = {this.inputKeyPress}onChange= {this.updateResponse} font-size = "30px" placeholder = "Press start" value = {this.state.response}/>
                <div> Score: {this.state.score}</div>
                <h2 id = "ans">m: {this.state.time.m} s: {this.state.time.s}</h2>
                <button id = "ans" onClick={this.startTimer}>Start</button>
