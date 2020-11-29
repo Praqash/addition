@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
     <div id="app"></div>
@@ -63,7 +63,7 @@
             <div>
                
                 <h2 id = "problem">{this.state.num1}+{this.state.num2}</h2>
-               <input id = "ans" onKeyPress = {this.inputKeyPress}onChange= {this.updateResponse} placeholder = "Press start to begin" value = {this.state.response}/>
+               <input id = "ans" onKeyPress = {this.inputKeyPress}onChange= {this.updateResponse} font-size = "30px" placeholder = "Press start to begin" value = {this.state.response}/>
                <div> Score: {this.state.score}</div>
                <h2 id = "ans">m: {this.state.time.m} s: {this.state.time.s}</h2>
                <button id = "ans" onClick={this.startTimer}>Start</button>
