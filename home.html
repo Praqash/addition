@@ -48,6 +48,7 @@
                 time: {}, 
                 seconds: 0,
                 score: "",
+                average:"",
                 accuracy:"",
                 count: 0,
                 response: "",
@@ -74,7 +75,7 @@
                     <div> 
                     <h3 id="winner">Your time is! m:{this.state.time.m} s:{this.state.time.s}</h3>
                     <h3 id="winner">Your accuracy is!: {(1/this.state.count)*1000}%</h3>
-                    <button id = "ans" onClick={this.startTimer}>Start</button>
+                    <button id = "ans" onClick={this.startTimer, this.focusInput}>Start</button>
                     </div> 
                     );
                     }
@@ -86,9 +87,9 @@
                 
                 
                <h2 id = "problem">{this.state.num1}{this.state.operator}{this.state.num2}</h2>
-               <input id = "ans" onKeyPress = {this.inputKeyPress} onChange= {this.updateResponse} placeholder = "Press start" value = {this.state.response}/>
+               <input ref={(input) => { this.nameInput = input; }}  id = "ans" onKeyPress = {this.inputKeyPress} onChange= {this.updateResponse} placeholder = "Press start" value = {this.state.response}/>
                <div> Score: {this.state.score}</div>
-               <h5> Average score: {this.state.count/this.state.seconds}</h5>
+               <h5> Average score: {this.state.average}</h5>
                <h2 id = "ans">m:{this.state.time.m} s:{this.state.time.s}</h2>
                <button id = "ans" onClick={this.startTimer}>Start</button>
                   
@@ -119,14 +120,27 @@
     componentDidMount() {
       let timeLeftVar = this.secondsToTime(this.state.seconds);
       this.setState({ time: timeLeftVar });
+      
     }
-  
+    
+        
+
+    
     startTimer() {
+        this.nameInput.focus();
+        
       if (this.timer == 0 && this.state.seconds == 0) {
+          
         this.timer = setInterval(this.countUp, 1000);
       }
       
       this.setState(state =>({
+        
+              
+             
+              
+
+           
                 count: 0,
                 seconds: -1,
                 score: 0,
@@ -134,6 +148,9 @@
                 num2: Math.ceil(Math.random()*10),
                 response: "",
                 operator: "+",
+                
+
+           
       }));
 
     }
@@ -148,8 +165,19 @@
         time: this.secondsToTime(seconds),
         seconds: seconds,
       });
-      }
+
+      if(this.state.seconds==0)
+      {
+        this.setState({
+        average: 0,
+        });
       
+      
+      
+      }
+    
+      }
+    
       else{
         return this.renderWinnerScreen();
       }
@@ -161,7 +189,9 @@
        inputKeyPress = (event) =>{
         if(event.key==='Enter' && this.state.seconds != 0){
             this.setState(state =>({
-                count: state.count +1,}));
+                count: state.count +1,
+                average: this.state.count/this.state.seconds,
+                }));
           const answer = parseInt(this.state.response); 
           if (answer === this.state.num1+this.state.num2)  
           {
@@ -191,12 +221,6 @@
                });
 
            } 
-
-           level = (event) =>{
-            this.setState({
-                  x: 100,
-                });
-           }
 
       }
 
