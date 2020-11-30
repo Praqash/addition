@@ -64,6 +64,7 @@
                     if (this.state.score === 10) {
                         
                         return this.renderWinnerScreen();
+                        this.nameInput.focus();
                     } else 
                     {
                         return this.renderStart();
@@ -75,7 +76,7 @@
                     <div> 
                     <h3 id="winner">Your time is! m:{this.state.time.m} s:{this.state.time.s}</h3>
                     <h3 id="winner">Your accuracy is!: {(1/this.state.count)*1000}%</h3>
-                    <button id = "ans" onClick={this.startTimer, this.focusInput}>Start</button>
+                    <button id = "ans" onClick={this.startTimer}>Start</button>
                     </div> 
                     );
                     }
@@ -126,12 +127,14 @@
         
 
     
-    startTimer() {
-        this.nameInput.focus();
+    startTimer = (event)=> {
+        
         
       if (this.timer == 0 && this.state.seconds == 0) {
+        
           
         this.timer = setInterval(this.countUp, 1000);
+        
       }
       
       this.setState(state =>({
@@ -149,10 +152,12 @@
                 response: "",
                 operator: "+",
                 
-
+                
            
-      }));
-
+      }
+      
+      ));
+      this.nameInput.focus();
     }
 
   
