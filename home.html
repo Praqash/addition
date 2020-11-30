@@ -47,8 +47,8 @@
             this.state = {
                 time: {}, 
                 seconds: 0,
-                score: 0,
-            
+                score: "",
+                accuracy:"",
                 count: 0,
                 response: "",
                 num1: "",
@@ -73,7 +73,7 @@
                     return (
                     <div> 
                     <h3 id="winner">Your time is! m:{this.state.time.m} s:{this.state.time.s}</h3>
-                    <h3 id="winner">Your average score is!: {this.state.score/this.state.seconds}</h3>
+                    <h3 id="winner">Your accuracy is!: {(1/this.state.count)*1000}%</h3>
                     <button id = "ans" onClick={this.startTimer}>Start</button>
                     </div> 
                     );
@@ -88,7 +88,7 @@
                <h2 id = "problem">{this.state.num1}{this.state.operator}{this.state.num2}</h2>
                <input id = "ans" onKeyPress = {this.inputKeyPress} onChange= {this.updateResponse} placeholder = "Press start" value = {this.state.response}/>
                <div> Score: {this.state.score}</div>
-               <h5> Average Score: {this.state.score/this.state.seconds}</h5>
+               <h5> Average score: {this.state.count/this.state.seconds}</h5>
                <h2 id = "ans">m:{this.state.time.m} s:{this.state.time.s}</h2>
                <button id = "ans" onClick={this.startTimer}>Start</button>
                   
@@ -127,6 +127,7 @@
       }
       
       this.setState(state =>({
+                count: 0,
                 seconds: -1,
                 score: 0,
                 num1: Math.ceil(Math.random()*10),
@@ -159,6 +160,8 @@
   
        inputKeyPress = (event) =>{
         if(event.key==='Enter' && this.state.seconds != 0){
+            this.setState(state =>({
+                count: state.count +1,}));
           const answer = parseInt(this.state.response); 
           if (answer === this.state.num1+this.state.num2)  
           {
