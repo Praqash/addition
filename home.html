@@ -4,13 +4,18 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+    
+    
     <div id="app"></div>
+    
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <title>Test</title>
     <style>
-        #app, #winner{
+
+
+#app, #winner{
             
             text-align: center;
             font-family: 'Courier New', Courier, monospace;
@@ -25,8 +30,15 @@
   </head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <body>
+
+
+    
     
     <script type="text/babel">
+
+
+
+     
 
       class App extends React.Component {
         constructor(props){
@@ -36,10 +48,12 @@
                 time: {}, 
                 seconds: 0,
                 score: 0,
+            
                 count: 0,
                 response: "",
-                num1: Math.ceil(Math.random()*100),
-                num2: Math.ceil(Math.random()*100),
+                num1: "",
+                num2: "",
+                operator: "",
             };
             this.timer = 0;
             this.startTimer = this.startTimer.bind(this);
@@ -49,7 +63,8 @@
                     if (this.state.score === 10) {
                         
                         return this.renderWinnerScreen();
-                    } else {
+                    } else 
+                    {
                         return this.renderStart();
                     }
                 }
@@ -57,7 +72,8 @@
                 renderWinnerScreen() {
                     return (
                     <div> 
-                    <h3 id="winner">Your time is! m: {this.state.time.m} s: {this.state.time.s}</h3>
+                    <h3 id="winner">Your time is! m:{this.state.time.m} s:{this.state.time.s}</h3>
+                    <h3 id="winner">Your average score is!: {this.state.score/this.state.seconds}</h3>
                     <button id = "ans" onClick={this.startTimer}>Start</button>
                     </div> 
                     );
@@ -67,11 +83,13 @@
                     return (
                         
             <div>
-               
-                <h2 id = "problem">{this.state.num1}+{this.state.num2}</h2>
-               <input id = "ans" onKeyPress = {this.inputKeyPress}onChange= {this.updateResponse} placeholder = "Press start" value = {this.state.response}/>
+                
+                
+               <h2 id = "problem">{this.state.num1}{this.state.operator}{this.state.num2}</h2>
+               <input id = "ans" onKeyPress = {this.inputKeyPress} onChange= {this.updateResponse} placeholder = "Press start" value = {this.state.response}/>
                <div> Score: {this.state.score}</div>
-               <h2 id = "ans">m: {this.state.time.m} s: {this.state.time.s}</h2>
+               <h5> Average Score: {this.state.score/this.state.seconds}</h5>
+               <h2 id = "ans">m:{this.state.time.m} s:{this.state.time.s}</h2>
                <button id = "ans" onClick={this.startTimer}>Start</button>
                   
                  
@@ -111,9 +129,10 @@
       this.setState(state =>({
                 seconds: -1,
                 score: 0,
-                num1: Math.ceil(Math.random()*100),
-                num2: Math.ceil(Math.random()*100),
-                response: ""
+                num1: Math.ceil(Math.random()*10),
+                num2: Math.ceil(Math.random()*10),
+                response: "",
+                operator: "+",
       }));
 
     }
@@ -145,8 +164,9 @@
           {
             this.setState(state =>({
                 score: state.score +1,
-                num1: Math.ceil(Math.random()*100),
-                num2: Math.ceil(Math.random()*100),
+                num1: Math.ceil(Math.random()*10),
+                num2: Math.ceil(Math.random()*10),
+                operator: "+",
                 response: ""
             }));
           }
@@ -169,6 +189,12 @@
 
            } 
 
+           level = (event) =>{
+            this.setState({
+                  x: 100,
+                });
+           }
+
       }
 
       ReactDOM.render(<App />, document.querySelector("#app"));
@@ -176,5 +202,3 @@
     </script>
   </body>
 </html>
-
-
