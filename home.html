@@ -1,237 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    
+
+    <head>
+    <div id="app"></div>
+   
+    <link rel="stylesheet" href="basic.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <div id="app"></div>
-    
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <title>Test</title>
-    <style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.2.3/css-doodle.min.js"></script>
+</head>
 
-
-#app, #winner{
-            
-            text-align: center;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        #ans{
-            box-sizing:border-box;
-            text-align: center;
-            font-family: 'Courier New', Courier, monospace;
-        }
-    </style>
-  </head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <body>
-
-
+<body>
     
+
+<style>
+#app {
+    width:100%;
+    height:100%;
+    display: grid;
+    align-content: stretch;
+  justify-content: stretch;
+
+  
+  grid-row: 2 / -1;
+  grid-column: 2 / 3;
+    text-align: center;
+    font-family: "Courier New", Courier, monospace;
+  }
+  
+  #ans {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: "Courier New", Courier, monospace;
+  }
+
+
+
+
+  
+</style>
     
-    <script type="text/babel">
+  
+
+
+<script type="text/babel">
 
 
 
      
 
-      class App extends React.Component {
-        constructor(props){
-            super(props);
-             
-            this.state = {
-                time: {}, 
-                seconds: 0,
-                score: "",
-                average:"",
-                accuracy:"",
-                count: 0,
-                response: "",
-                num1: "",
-                num2: "",
-                operator: "",
-            };
-            this.timer = 0;
-            this.startTimer = this.startTimer.bind(this);
-            this.countUp = this.countUp.bind(this);
-        }
-        render() {
-                    if (this.state.score === 10) {
-                        
-                        return this.renderWinnerScreen();
-                        this.nameInput.focus();
-                    } else 
-                    {
-                        return this.renderStart();
-                    }
-                }
-
-                renderWinnerScreen() {
-                    return (
-                    <div> 
-                    <h3 id="winner">Your time is! m:{this.state.time.m} s:{this.state.time.s}</h3>
-                    <h3 id="winner">Your accuracy is!: {(1/this.state.count)*1000}%</h3>
-                    <button id = "ans" onClick={this.startTimer}>Start</button>
-                    </div> 
-                    );
-                    }
-
-                renderStart() {
-                    return (
-                        
-            <div>
-                
-                
-               <h2 id = "problem">{this.state.num1}{this.state.operator}{this.state.num2}</h2>
-               <input ref={(input) => { this.nameInput = input; }}  id = "ans" onKeyPress = {this.inputKeyPress} onChange= {this.updateResponse} placeholder = "Press start" value = {this.state.response}/>
-               <div> Score: {this.state.score}</div>
-               <h5> Average score: {this.state.average}</h5>
-               <h2 id = "ans">m:{this.state.time.m} s:{this.state.time.s}</h2>
-               <button id = "ans" onClick={this.startTimer}>Start</button>
-                  
-                 
-            </div>
-          );
-        }  
+    class App extends React.Component {
+      constructor(props){
+          super(props);
            
+          this.state = {
+              time: {}, 
+              seconds: 0,
+              score: "",
+              average:"",
+              accuracy:"",
+              count: 0,
+              response: "",
+              num1: "",
+              num2: "",
+              operator: "",
+          };
+          this.timer = 0;
+          this.startTimer = this.startTimer.bind(this);
+          this.countUp = this.countUp.bind(this);
+      }
+      render() {
+                  if (this.state.score === 10) {
+                      
+                      return this.renderWinnerScreen();
+                      this.nameInput.focus();
+                  } else 
+                  {
+                      return this.renderStart();
+                  }
+              }
+
+              renderWinnerScreen() {
+                  return (
+                  <div> 
+                  <h3 id="winner">Your time is! m:{this.state.time.m} s:{this.state.time.s}</h3>
+                  <h3 id="winner">Your accuracy is!: {(1/this.state.count)*1000}%</h3>
+                  <button id = "ans" onClick={this.startTimer}>Start</button>
+                  </div> 
+                  );
+                  }
+
+              renderStart() {
+                  return (
+                      
+          <div className = "container">
+              
+              
+            <div><h2 className = "problem"id = "problem">{this.state.num1}{this.state.operator}{this.state.num2}</h2></div>
+            <div><input ref={(input) => { this.nameInput = input; }} className = "ans" id = "ans" onKeyPress = {this.inputKeyPress} onChange= {this.updateResponse} placeholder = "Press start" value = {this.state.response}/></div>
+             <div> Score: {this.state.score}</div>
+             <div><h5> Average score: {this.state.average}</h5></div>
+             <div><h2 id = "ans">m:{this.state.time.m} s:{this.state.time.s}</h2></div>
+             <div><button className = "start" id = "ans" onClick={this.startTimer}>Start</button></div>
+                
+               
+          </div>
+        );
+      }  
+         
 
 
-        secondsToTime(secs){
-      let hours = Math.floor(secs / (60 * 60));
+      secondsToTime(secs){
+    let hours = Math.floor(secs / (60 * 60));
+
+    let divisor_for_minutes = secs % (60 * 60);
+    let minutes = Math.floor(divisor_for_minutes / 60);
+
+    let divisor_for_seconds = divisor_for_minutes % 60;
+    let seconds = Math.ceil(divisor_for_seconds);
+
+    let obj = {
+      "h": hours,
+      "m": minutes,
+      "s": seconds
+    };
+    return obj;
+  }
+
+  componentDidMount() {
+    let timeLeftVar = this.secondsToTime(this.state.seconds);
+    this.setState({ time: timeLeftVar });
+    
+  }
   
-      let divisor_for_minutes = secs % (60 * 60);
-      let minutes = Math.floor(divisor_for_minutes / 60);
+      
+
   
-      let divisor_for_seconds = divisor_for_minutes % 60;
-      let seconds = Math.ceil(divisor_for_seconds);
-  
-      let obj = {
-        "h": hours,
-        "m": minutes,
-        "s": seconds
-      };
-      return obj;
-    }
-  
-    componentDidMount() {
-      let timeLeftVar = this.secondsToTime(this.state.seconds);
-      this.setState({ time: timeLeftVar });
+  startTimer = (event)=> {
+      
+      
+    if (this.timer == 0 && this.state.seconds == 0) {
+      
+        
+      this.timer = setInterval(this.countUp, 1000);
       
     }
     
-        
-
-    
-    startTimer = (event)=> {
-        
-        
-      if (this.timer == 0 && this.state.seconds == 0) {
-        
-          
-        this.timer = setInterval(this.countUp, 1000);
-        
-      }
+    this.setState(state =>({
       
-      this.setState(state =>({
-        
-              
-             
-              
+            
+           
+            
 
-           
-                count: 0,
-                seconds: -1,
-                score: 0,
-                num1: Math.ceil(Math.random()*10),
-                num2: Math.ceil(Math.random()*10),
-                response: "",
-                operator: "+",
-                
-                
-           
-      }
-      
-      ));
-      this.nameInput.focus();
+         
+              count: 0,
+              seconds: -1,
+              score: 0,
+              num1: Math.ceil(Math.random()*10),
+              num2: Math.ceil(Math.random()*10),
+              response: "",
+              operator: "+",
+              
+              
+         
     }
+    
+    ));
+    this.nameInput.focus();
+  }
 
-  
-    countUp() {
-      // Remove one second, set state so a re-render happens.
-      if (this.state.score < 10)
-      {
-      let seconds = this.state.seconds + 1;
+
+  countUp() {
+    // Remove one second, set state so a re-render happens.
+    if (this.state.score < 10)
+    {
+    let seconds = this.state.seconds + 1;
+    this.setState({
+      time: this.secondsToTime(seconds),
+      seconds: seconds,
+    });
+
+    if(this.state.seconds==0)
+    {
       this.setState({
-        time: this.secondsToTime(seconds),
-        seconds: seconds,
+      average: 0,
       });
+    
+    
+    
+    }
+  
+    }
+  
+    else{
+      return this.renderWinnerScreen();
+    }
+    
+  }
 
-      if(this.state.seconds==0)
-      {
-        this.setState({
-        average: 0,
-        });
-      
-      
-      
+  
+
+     inputKeyPress = (event) =>{
+      if(event.key==='Enter' && this.state.seconds != 0){
+          this.setState(state =>({
+              count: state.count +1,
+              average: this.state.count/this.state.seconds,
+              }));
+        const answer = parseInt(this.state.response); 
+        if (answer === this.state.num1+this.state.num2)  
+        {
+          this.setState(state =>({
+              score: state.score +1,
+              num1: Math.ceil(Math.random()*10),
+              num2: Math.ceil(Math.random()*10),
+              operator: "+",
+              response: ""
+          }));
+        }
+        else{
+            this.setState(state=>({
+              score: state.score -1,
+              response: ""
+
+            }))
+
       }
-    
-      }
-    
-      else{
-        return this.renderWinnerScreen();
-      }
-      
+
+         }
+         }
+         
+         updateResponse = (event) => {
+             this.setState({
+                response: event.target.value
+             });
+
+         } 
+
     }
 
-    
-  
-       inputKeyPress = (event) =>{
-        if(event.key==='Enter' && this.state.seconds != 0){
-            this.setState(state =>({
-                count: state.count +1,
-                average: this.state.count/this.state.seconds,
-                }));
-          const answer = parseInt(this.state.response); 
-          if (answer === this.state.num1+this.state.num2)  
-          {
-            this.setState(state =>({
-                score: state.score +1,
-                num1: Math.ceil(Math.random()*10),
-                num2: Math.ceil(Math.random()*10),
-                operator: "+",
-                response: ""
-            }));
-          }
-          else{
-              this.setState(state=>({
-                score: state.score -1,
-                response: ""
+    ReactDOM.render(<App />, document.querySelector("#app"));
 
-              }))
+  </script>
 
-        }
 
-           }
-           }
-           
-           updateResponse = (event) => {
-               this.setState({
-                  response: event.target.value
-               });
+</body>
 
-           } 
-
-      }
-
-      ReactDOM.render(<App />, document.querySelector("#app"));
-
-    </script>
-  </body>
-</html>
+  </html>
