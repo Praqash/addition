@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,7 +82,7 @@
               
               
             <div><h2 className = "problem"id = "problem">{this.state.num1}{this.state.operator}{this.state.num2}</h2></div>
-            <div><input ref={(input) => { this.nameInput = input; }} className = "ans" id = "ans" onKeyPress = {this.inputKeyPress} onChange= {this.updateResponse} placeholder = "Press start" value = {this.state.response}/></div>
+            <div><input  keyboardType="numeric" ref={(input) => { this.nameInput = input; }} className = "ans" id = "ans" onKeyPress = {this.inputKeyPress} onChange= {this.updateResponse} placeholder = "Press start" value = {this.state.response}/></div>
             
             <div><h2>Score: {this.state.score}</h2></div>
             <div><button className = "start" id = "ans" onClick={this.startTimer}>Start</button></div>
