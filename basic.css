@@ -36,3 +36,28 @@ body {
 .container > div:nth-child(4n) {
   background-color: #ffcc5c;
 }
+#app {
+  height: 100%;
+  display: grid;
+  align-content: stretch;
+  justify-content: stretch;
+
+  grid-row: 2 / -1;
+  grid-column: 2 / 3;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#ans {
+  box-sizing: border-box;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+}
+.ans {
+  height: 40px;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+button {
+  height: 40px;
+}
