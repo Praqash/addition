@@ -54,6 +54,13 @@
           this.startTimer = this.startTimer.bind(this);
           this.countUp = this.countUp.bind(this);
       }
+
+
+      onTextChanged(value) {
+    // code to remove non-numeric characters from text
+    this.setState({ number: value.replace(/[- #*;,.<>\{\}\[\]\\\/]/gi, '') });
+  }
+
       render() {
                   if (this.state.score === 10) {
                       
@@ -82,7 +89,7 @@
               
               
             <div><h2 className = "problem"id = "problem">{this.state.num1}{this.state.operator}{this.state.num2}</h2></div>
-            <div><input  keyboardType="numeric" ref={(input) => { this.nameInput = input; }} className = "ans" id = "ans" onKeyPress = {this.inputKeyPress} onChange= {this.updateResponse} placeholder = "Press start" value = {this.state.response}/></div>
+            <div><input  ref={(input) => { this.nameInput = input; }} className = "ans" id = "ans" onKeyPress = {this.inputKeyPress} onChange= {this.updateResponse} placeholder = "Press start" type="number" value = {this.state.response}/></div>
             
             <div><h2>Score: {this.state.score}</h2></div>
             <div><button className = "start" id = "ans" onClick={this.startTimer}>Start</button></div>
@@ -155,6 +162,7 @@
     
     ));
     this.nameInput.focus();
+    type="number"
   }
 
 
