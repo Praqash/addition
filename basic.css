@@ -16,7 +16,7 @@ body {
   grid-row: 1 / -1;
   grid-column: 1 / -1;
   grid-template-rows: repeat(12, 1fr);
-  margin: 5px;
+  grid-gap: 0px;
   grid-template-columns: 1fr 4fr 1fr;
   display: grid;
 }
@@ -55,6 +55,8 @@ body {
 }
 .ans {
   height: 40px;
+  border: 0px;
+  outline: 0px;
   grid-row-start: 2;
   grid-row-end: 3;
 }
