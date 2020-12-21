@@ -40,6 +40,7 @@ html {
   background-color: #ffeead;
 }
 body {
+  padding: 20px;
   z-index: 1;
   grid-template-rows: repeat(100, 1fr);
   grid-template-columns: repeat(100, 1fr);
@@ -123,14 +124,14 @@ button {
     animation-fill-mode: backwards;
     transform: translate(-2%, 1%) rotateZ(1deg);
     transform: translateY(80vh);
-    opacity: 0;
+    opacity: 0.3;
   }
 
   0% {
     transform: translate(-2%, 1%) rotateZ(1deg);
 
     transform: translateY();
-    opacity: 1.2;
+    opacity: 1.5;
   }
 }
 #app {
@@ -145,12 +146,12 @@ button {
     transform: translate(-2%, 1%) rotateZ(1deg);
     animation-fill-mode: backwards;
     transform: translateY(80vh);
-    opacity: 0;
+    opacity: 0.3;
   }
 
   0% {
     transform: translate(2%, -1%) rotateZ(1deg);
     transform: translateY();
-    opacity: 1.2;
+    opacity: 1.5;
   }
 }
