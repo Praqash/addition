@@ -1,56 +1,94 @@
-.container > div {
-  display: grid;
-  grid-row: 1 / -1;
-  grid-column: 1 / -1;
-  justify-content: center;
+.doodle {
+  z-index: inherit;
+  position: inherit;
+  background-color: inherit;
+  grid-row: 1/-1;
+  grid-column: 1/-1;
+}
 
-  font-size: 1.5em;
+.contain > div {
+  width: 100%;
+  height: 100%;
+  display: grid;
+
+  justify-content: center;
+  grid-row: 1/-1;
+  grid-column: 1/-1;
+  font-size: 2em;
 
   color: #ffeead;
 }
+.cracked {
+  position: relative;
+}
+
+.cracked span:nth-child(1),
+.cracked span:nth-child(3) {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 html {
-  z-index: inherit;
+  z-index: 1;
   justify-content: center;
   text-align: center;
 
   align-items: center;
   display: inline-flex;
-  width: 100%;
-  height: 100%;
+
   padding: 10px;
   background-color: #ffeead;
 }
 body {
-  z-index: inherit;
-  height: 100%;
+  z-index: 1;
   grid-template-rows: repeat(100, 1fr);
-  padding: 10px;
   grid-template-columns: repeat(100, 1fr);
   display: grid;
 }
 
-.container > div:nth-child(1n) {
+.contain > div:nth-child(1n) {
   background-color: #96ceb4;
+  animation-delay: 1s;
+  animation-name: crack1 7s linear infinite;
+  animation-name: crack1 7s linear infinite;
+
+  z-index: 1;
 }
 
-.container > div:nth-child(3n) {
+.contain > div:nth-child(3n) {
   background-color: #88d8b0;
+  animation-delay: 2s;
+  animation-name: crack1 7s linear infinite;
+  animation-name: crack1 7s linear infinite;
+
+  z-index: 2;
 }
 
-.container > div:nth-child(2n) {
+.contain > div:nth-child(2n) {
   background-color: #ff6f69;
+  animation-delay: 3s;
+  animation-name: crack1 7s linear infinite;
+  animation-name: crack1 7s linear infinite;
+  transition: 0.2s ease (200ms);
+
+  z-index: 3;
 }
 
-.container > div:nth-child(4n) {
+.contain > div:nth-child(4n) {
   background-color: #ffcc5c;
+  animation-delay: 4s;
+  animation-name: crack1 7s linear infinite;
+  animation-name: crack1 7s linear infinite;
+  z-index: 4;
 }
 #app {
+  height: 100%;
+  width: 100%;
   z-index: inherit;
-
+  grid-row: 1/-1;
+  grid-column: 1/-1;
   align-items: center;
   display: grid;
-  grid-row: 1 / -1;
-  grid-column: 1 / -1;
 
   font-family: "Courier New", Courier, monospace;
 }
@@ -67,4 +105,52 @@ body {
 }
 button {
   height: 40px;
+}
+.cracked span:nth-child(1) {
+  clip-path: polygon(-10% 0%, 10% 0%, 60% 100%, -10% 100%);
+  transform: translate(-2%, 1%) rotateZ(1deg);
+}
+.cracked span:nth-child(2) {
+  clip-path: polygon(10% 0%, 40% 0%, 80% 100%, 60% 100%);
+}
+.cracked span:nth-child(3) {
+  clip-path: polygon(40% 0%, 110% 0%, 110% 100%, 80% 100%);
+  transform: translate(2%, -1%) rotateZ(1deg);
+}
+
+@keyframes crack2 {
+  100% {
+    animation-fill-mode: backwards;
+    transform: translate(-2%, 1%) rotateZ(1deg);
+    transform: translateY(80vh);
+    opacity: 0;
+  }
+
+  0% {
+    transform: translate(-2%, 1%) rotateZ(1deg);
+
+    transform: translateY();
+    opacity: 1.2;
+  }
+}
+#app {
+  animation-delay: 1s;
+  animation: crack2 7s linear infinite;
+  animation: crack1 7s linear infinite;
+  animation-play-state: running;
+  animation-fill-mode: backwards;
+}
+@keyframes crack1 {
+  100% {
+    transform: translate(-2%, 1%) rotateZ(1deg);
+    animation-fill-mode: backwards;
+    transform: translateY(80vh);
+    opacity: 0;
+  }
+
+  0% {
+    transform: translate(2%, -1%) rotateZ(1deg);
+    transform: translateY();
+    opacity: 1.2;
+  }
 }
