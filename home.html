@@ -1,17 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-    <div id="app"></div>
+        
+           <div id="app"></div>
+    
+    <script src="https://unpkg.com/css-doodle@0.11.3/css-doodle.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="basic.css">
+    <link rel="stylesheet" href="doodle.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.2.3/css-doodle.min.js"></script>
+    
 </head>
 
 <body>
@@ -19,13 +21,12 @@
 
 <style>
 
-
-
-
   
-</style>
+</style >
     
-  
+
+
+
 
 
 <script type="text/babel">
@@ -40,6 +41,7 @@
            
           this.state = {
               time: {}, 
+              op:"",
               seconds: 0,
               score: "",
               average:"",
@@ -49,21 +51,26 @@
               num1: "",
               num2: "",
               operator: "",
+              
           };
+          this.operate=['*','+','-'],
           this.timer = 0;
           this.startTimer = this.startTimer.bind(this);
           this.countUp = this.countUp.bind(this);
       }
+    
 
 
-      onTextChanged(value) {
-    // code to remove non-numeric characters from text
-    this.setState({ number: value.replace(/[- #*;,.<>\{\}\[\]\\\/]/gi, '') });
-  }
+      getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+  
 
       render() {
-                  if (this.state.score === 10) {
-                      
+                  if (this.state.score == 10) {
+                    
+                  
+                    
                       return this.renderWinnerScreen();
                       this.nameInput.focus();
                   } else 
@@ -74,6 +81,7 @@
 
               renderWinnerScreen() {
                   return (
+                    
                   <div> 
                   <h3 id="winner">Your time is! m:{this.state.time.m} s:{this.state.time.s}</h3>
                   <h3 id="winner">Your accuracy is!: {(1/this.state.count)*1000}%</h3>
@@ -83,23 +91,58 @@
                   }
 
               renderStart() {
+
+                
                   return (
-                      
-          <div className = "container">
-              
-              
-            <div><h2 className = "problem"id = "problem">{this.state.num1}{this.state.operator}{this.state.num2}</h2></div>
+                           
+          
+          
+                    <div className = "cracked">
+          
+                 <span> 
+                    
+                <div className = "contain">
+             
+            <div><h1 className = "problem"id = "problem">{this.state.num1}{this.state.operator}{this.state.num2}</h1></div>
             <div><input  ref={(input) => { this.nameInput = input; }} className = "ans" id = "ans" onKeyPress = {this.inputKeyPress} onChange= {this.updateResponse} placeholder = "Press start" type="number" value = {this.state.response}/></div>
             
-            <div><h2>Score: {this.state.score}</h2></div>
+            <div><h1>Score: {this.state.score}</h1></div>
             <div><button className = "start" id = "ans" onClick={this.startTimer}>Start</button></div>
-            <div><h2 id = "ans">m:{this.state.time.m} s:{this.state.time.s}</h2></div>
-            <div><h3> Average score: {this.state.average}</h3></div>
-             
-             
+            <div><h1 id = "ans">m:{this.state.time.m} s:{this.state.time.s}</h1></div>
+            <div><h2> Average score: {this.state.average}</h2></div>
+       
+        </div>  
+        </span> 
+        <span> 
+                    
+                    <div className = "contain">
+                 
+                <div><h1 className = "problem"id = "problem">{this.state.num1}{this.state.operator}{this.state.num2}</h1></div>
+                <div><input  ref={(input) => { this.nameInput = input; }} className = "ans" id = "ans" onKeyPress = {this.inputKeyPress} onChange= {this.updateResponse} placeholder = "Press start" type="number" value = {this.state.response}/></div>
                 
-               
-          </div>
+                <div><h1>Score: {this.state.score}</h1></div>
+                <div><button className = "start" id = "ans" onClick={this.startTimer}>Start</button></div>
+                <div><h1 id = "ans">m:{this.state.time.m} s:{this.state.time.s}</h1></div>
+                <div><h2> Average score: {this.state.average}</h2></div>
+           
+            </div>  
+            </span> 
+            <span> 
+                    
+                    <div className = "contain">
+                 
+                <div><h1 className = "problem"id = "problem">{this.state.num1}{this.state.operator}{this.state.num2}</h1></div>
+                <div><input  ref={(input) => { this.nameInput = input; }} className = "ans" id = "ans" onKeyPress = {this.inputKeyPress} onChange= {this.updateResponse} placeholder = "Press start" type="number" value = {this.state.response}/></div>
+                
+                <div><h1>Score: {this.state.score}</h1></div>
+                <div><button className = "start" id = "ans" onClick={this.startTimer}>Start</button></div>
+                <div><h1 id = "ans">m:{this.state.time.m} s:{this.state.time.s}</h1></div>
+                <div><h2> Average score: {this.state.average}</h2></div>
+           
+            </div>  
+            </span> 
+       </div> 
+          
         );
       }  
          
@@ -121,6 +164,10 @@
     };
     return obj;
   }
+
+
+  
+
 
   componentDidMount() {
     let timeLeftVar = this.secondsToTime(this.state.seconds);
@@ -144,8 +191,9 @@
     this.setState(state =>({
       
             
-           
-            
+        
+    
+
 
          
               count: 0,
@@ -153,8 +201,12 @@
               score: 0,
               num1: Math.ceil(Math.random()*10),
               num2: Math.ceil(Math.random()*10),
+              
+              
+
+              operator: this.operate[Math.floor(Math.random() * Math.floor(3))],
               response: "",
-              operator: "+",
+              
               
               
          
@@ -162,7 +214,7 @@
     
     ));
     this.nameInput.focus();
-    type="number"
+    
   }
 
 
@@ -203,13 +255,20 @@
               average: this.state.count/this.state.seconds,
               }));
         const answer = parseInt(this.state.response); 
-        if (answer === this.state.num1+this.state.num2)  
+        
+        const OPMAP = {
+  '*': (n1, n2) => n1 * n2,
+  '+': (n1, n2) => n1 + n2,
+  '-': (n1, n2) => n1 - n2
+}         
+        if (answer ===  Math.round((OPMAP[this.state.operator](this.state.num1, this.state.num2) + Number.EPSILON) * 100) / 100)
+        
         {
           this.setState(state =>({
               score: state.score +1,
               num1: Math.ceil(Math.random()*10),
               num2: Math.ceil(Math.random()*10),
-              operator: "+",
+              operator: this.operate[Math.floor(Math.random() * Math.floor(3))],
               response: ""
           }));
         }
