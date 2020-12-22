@@ -49,29 +49,24 @@ body {
 .contain > div:nth-child(1n) {
   background-color: #96ceb4;
 
-  animation: crack1 7s linear infinite;
-  animation: crack2 7s linear infinite;
   z-index: 1;
 }
 
 .contain > div:nth-child(3n) {
   background-color: #88d8b0;
-  animation: crack1 7s linear infinite;
-  animation: crack2 7s linear infinite;
+
   z-index: 1;
 }
 
 .contain > div:nth-child(2n) {
   background-color: #ff6f69;
-  animation: crack1 7s linear infinite;
-  animation: crack2 7s linear infinite;
+
   z-index: 1;
 }
 
 .contain > div:nth-child(4n) {
   background-color: #ffcc5c;
-  animation: crack1 7s linear infinite;
-  animation: crack2 7s linear infinite;
+
   z-index: 1;
 }
 #app {
@@ -110,6 +105,7 @@ button {
   clip-path: polygon(40% 0%, 110% 0%, 110% 100%, 80% 100%);
   transform: translate(2%, -1%) rotateZ(1deg);
 }
+
 @keyframes crack1 {
   0% {
     transform: translate(0%, 0%);
@@ -160,3 +156,4 @@ button {
     clip-path: polygon(random(100%) 0, 100% random(100%), 0 random(100%));
   }
 }
+
