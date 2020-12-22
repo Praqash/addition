@@ -138,7 +138,7 @@ button {
   animation-delay: 1s;
   animation: crack2 7s linear infinite;
   animation: crack1 7s linear infinite;
-  animation-play-state: running;
+  animation-play-state: paused;
   animation-fill-mode: backwards;
 }
 @keyframes crack1 {
