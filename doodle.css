@@ -86,17 +86,7 @@ body {
 button {
   height: 40px;
 }
-.cracked span:nth-child(1) {
-  clip-path: polygon(-10% 0%, 10% 0%, 60% 100%, -10% 100%);
-  transform: translate(-2%, 1%) rotateZ(1deg);
-}
-.cracked span:nth-child(2) {
-  clip-path: polygon(10% 0%, 40% 0%, 80% 100%, 60% 100%);
-}
-.cracked span:nth-child(3) {
-  clip-path: polygon(40% 0%, 110% 0%, 110% 100%, 80% 100%);
-  transform: translate(2%, -1%) rotateZ(1deg);
-}
+
 
 @keyframes crack1 {
   0% {
