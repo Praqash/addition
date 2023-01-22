@@ -18,16 +18,8 @@
 
   color: #ffeead;
 }
-.cracked {
-  position: relative;
-}
 
-.cracked span:nth-child(1),
-.cracked span:nth-child(3) {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+
 html {
   z-index: 1;
   justify-content: center;
